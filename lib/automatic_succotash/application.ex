@@ -9,7 +9,8 @@ defmodule AutomaticSuccotash.Application do
   def start(_type, _args) do
     children = [
       AutomaticSuccotashWeb.Telemetry,
-      {DNSCluster, query: Application.get_env(:automatic_succotash, :dns_cluster_query) || :ignore},
+      {DNSCluster,
+       query: Application.get_env(:automatic_succotash, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: AutomaticSuccotash.PubSub},
       # Start the Finch HTTP client for sending emails
       {Finch, name: AutomaticSuccotash.Finch},
